@@ -36,9 +36,11 @@
 
         // Переменная с оставшимся количеством букв для отгадывания
         var remainingLetters = word.length;
+        // Всего попыток
+        var guesses = 10;
 
         // Игровой цикл
-        while (remainingLetters) {
+        while (remainingLetters > 0 && guesses > 0) {
             // Показываем состояние игры
             alert(answerArray.join(" "));
             // Запрашиваем вариант ответа
@@ -51,6 +53,7 @@
             } else {
                 // Обновляем состояние игры
                 guess = guess.toLocaleLowerCase();
+                guesses--;
                 for (var j = 0; j < word.length; j++) {
                     if (word[j] === guess) {
                         answerArray[j] = guess;
@@ -63,7 +66,12 @@
 
         // Отображаем ответ и поздравляем игрока
         alert(answerArray.join(" "));
-        alert("Отлично! Было загадано слово: " + word);
+
+        if (guesses > 0) {
+            alert("Отлично! Было загадано слово: " + word);
+        } else {
+            alert("Плохо! Было загадано слово: " + word)
+        }
     </script>
 </body>
 </html>
